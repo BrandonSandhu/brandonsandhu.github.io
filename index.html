@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Brandon Sandhu — Papers</title>
+  <style>
+    body{font-family:Inter,Segoe UI,Arial,Helvetica,sans-serif;margin:24px;color:#111}
+    h1{margin-bottom:8px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:18px}
+    .card{border:1px solid #e6e6e6;border-radius:8px;padding:14px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,0.03)}
+    .card h2{margin:0 0 8px 0;font-size:1.05rem}
+    .card p{margin:0 0 12px 0;color:#444;font-size:0.95rem}
+    .actions a{display:inline-block;padding:8px 12px;background:#0b74de;color:#fff;border-radius:6px;text-decoration:none}
+    .note{color:#666;margin-top:12px;font-size:0.95rem}
+  </style>
+</head>
+<body>
+  <h1>Brandon Sandhu — Papers</h1>
+  <p class="note">Click a paper to open the PDF in a new tab.</p>
+  <div id="papers" class="grid"></div>
+
+  <script>
+    async function loadPapers(){
+      try{
+        const res = await fetch('papers.json', {cache: 'no-store'});
+        if(!res.ok) throw new Error('Could not load manifest');
+        const papers = await res.json();
+        const container = document.getElementById('papers');
+        if(!papers || papers.length === 0){ container.innerHTML = '<p>No papers found.</p>'; return }
+        papers.forEach(p => {
+          const card = document.createElement('div'); card.className = 'card';
+          const title = document.createElement('h2'); title.textContent = p.title || p.file;
+          const desc = document.createElement('p'); desc.textContent = p.description || '';
+          const actions = document.createElement('div'); actions.className = 'actions';
+          const link = document.createElement('a'); link.href = p.file; link.target = '_blank'; link.rel = 'noopener'; link.textContent = 'Open PDF';
+          actions.appendChild(link);
+          card.appendChild(title); card.appendChild(desc); card.appendChild(actions);
+          container.appendChild(card);
+        });
+      }catch(e){
+        document.getElementById('papers').innerHTML = '<p>Unable to load papers manifest.</p>';
+        console.error(e);
+      }
+    }
+    loadPapers();
+  </script>
+</body>
+</html>
