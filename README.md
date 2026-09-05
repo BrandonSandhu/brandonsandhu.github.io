@@ -33,7 +33,3 @@ Below are the papers included in this repository, grouped by topic. Click a titl
 ## Web Portfolio
 
 - View the interactive portfolio page: [Portfolio Page](index.html)
-
-## CV
-
-- View or download the CV: [CV.pdf](CV.pdf)
