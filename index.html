@@ -7,7 +7,10 @@
   <style>
     body{font-family:Inter,Segoe UI,Arial,Helvetica,sans-serif;margin:24px;color:#111}
     h1{margin-bottom:8px}
+    h2.section{margin-top:28px;margin-bottom:8px;font-size:1.15rem}
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:18px}
+    /* Wider grid variant used for the Epidemiology section to allow up to 4 columns */
+    .grid.grid-4{grid-template-columns:repeat(auto-fit,minmax(300px,1fr));}
     .card{border:1px solid #e6e6e6;border-radius:8px;padding:14px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,0.03)}
     .card h2{margin:0 0 8px 0;font-size:1.05rem}
     .card p{margin:0 0 12px 0;color:#444;font-size:0.95rem}
@@ -18,17 +21,18 @@
 <body>
   <h1>Brandon Sandhu — Papers</h1>
   <p class="note">Click a paper to open the PDF in a new tab.</p>
-  <div id="papers" class="grid"></div>
+  <div id="papers"></div>
 
   <script>
     async function loadPapers(){
       try{
         const res = await fetch('papers.json', {cache: 'no-store'});
         if(!res.ok) throw new Error('Could not load manifest');
-        const papers = await res.json();
+        const manifest = await res.json();
         const container = document.getElementById('papers');
-        if(!papers || papers.length === 0){ container.innerHTML = '<p>No papers found.</p>'; return }
-        papers.forEach(p => {
+        if(!manifest || manifest.length === 0){ container.innerHTML = '<p>No papers found.</p>'; return }
+
+        function createCard(p){
           const card = document.createElement('div'); card.className = 'card';
           const title = document.createElement('h2'); title.textContent = p.title || p.file;
           const desc = document.createElement('p'); desc.textContent = p.description || '';
@@ -36,8 +40,31 @@
           const link = document.createElement('a'); link.href = p.file; link.target = '_blank'; link.rel = 'noopener'; link.textContent = 'Open PDF';
           actions.appendChild(link);
           card.appendChild(title); card.appendChild(desc); card.appendChild(actions);
-          container.appendChild(card);
-        });
+          return card;
+        }
+
+        // Manifest supports either a simple array of items, or an array of sections
+        if(manifest[0].section){
+          manifest.forEach(section => {
+            const heading = document.createElement('h2'); heading.textContent = section.section; heading.className = 'section';
+            container.appendChild(heading);
+            const grid = document.createElement('div');
+            if (section.section && section.section.toLowerCase().includes('epidemiology')) {
+              grid.className = 'grid grid-4';
+            } else {
+              grid.className = 'grid';
+            }
+            (section.items || []).forEach(p => grid.appendChild(createCard(p)));
+            container.appendChild(grid);
+          });
+        } else {
+          const heading = document.createElement('h2'); heading.textContent = 'Papers'; heading.className = 'section';
+          container.appendChild(heading);
+          const grid = document.createElement('div'); grid.className = 'grid';
+          manifest.forEach(p => grid.appendChild(createCard(p)));
+          container.appendChild(grid);
+        }
+
       }catch(e){
         document.getElementById('papers').innerHTML = '<p>Unable to load papers manifest.</p>';
         console.error(e);

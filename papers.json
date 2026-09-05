@@ -1,7 +1,98 @@
 [
   {
-    "file": "transformer_architecture.pdf",
-    "title": "Transformer Architecture",
-    "description": "An overview of transformer design and internals."
+    "section": "Prime Number Theory and Cryptography",
+    "items": [
+      {
+        "file": "combinatorial_sieve_methods.pdf",
+        "title": "Combinatorial Sieve Methods",
+        "description": "Surveys combinatorial sieve techniques such as the Brun and Selberg sieves and their applications to prime distribution problems. Presents worked examples and discusses limitations and strengths of each sieve in bounding prime-counting functions."
+      },
+      {
+        "file": "prime_number_theorem.pdf",
+        "title": "The Prime Number Theorem",
+        "description": "Explores the statement and proof ideas behind the Prime Number Theorem, including Chebyshev's results and connections to the Riemann zeta function. Discusses implications for prime gaps and asymptotic estimates of the prime-counting function."
+      },
+      {
+        "file": "elliptic_curve_cryptography.pdf",
+        "title": "Elliptic Curve Cryptography",
+        "description": "Introduces elliptic curve cryptography (ECC), covering elliptic curves over finite fields, key exchange, and signature schemes like ECDSA. Discusses security considerations, parameter selection, and ECC's efficiency advantages over traditional public-key systems."
+      }
+    ]
+  },
+  {
+    "section": "Large Language Models",
+    "items": [
+      {
+        "file": "transformer_architecture.pdf",
+        "title": "Transformer Architecture",
+        "description": "Derives the Transformer architecture from first principles, covering tokens and learned embeddings, scaled dot-product self-attention (queries, keys, values, and softmax), and multi-head attention. Explains residual connections, layer normalization, and the transformer's feed-forward MLPs, and walks through backpropagation across attention layers. Includes training details such as vocabulary projection, softmax loss, and practical considerations for implementation and performance."
+      }
+    ]
+  },
+  {
+    "section": "Parallelism using OpenMP and MPI",
+    "items": [
+      {
+        "file": "n_body_sim_hybrid_openmp_mpi.pdf",
+        "title": "Hybrid N-Body Simulation (OpenMP + MPI)",
+        "description": "Describes a hybrid N-body simulation combining OpenMP threading and MPI message-passing. Covers implementation details, optimization strategies, and performance results demonstrating scalability across multi-core and multi-node setups."
+      },
+      {
+        "file": "domain_decomp_mpi.pdf",
+        "title": "Domain Decomposition with MPI",
+        "description": "Implements domain decomposition using MPI to parallelize a 2D simulation. Describes decomposition strategy and MPI communication patterns, with performance analysis showing improved throughput over the serial version."
+      },
+      {
+        "file": "graph_connectivity_parallelism.pdf",
+        "title": "Parallel Graph Connectivity Analysis",
+        "description": "Analyzes parallelization methods for computing connectivity statistics on large random graphs. Implements strategies to compute average connected components and largest component sizes, comparing performance and scalability."
+      }
+    ]
+  },
+  {
+    "section": "Epidemiology & Disease Modelling",
+    "items": [
+      {
+        "file": "ross_macdonald_spatial_kernel_model.pdf",
+        "title": "Ross-Macdonald Spatial Kernel Model",
+        "description": "Presents a deterministic Ross–Macdonald spatial-kernel model describing transmission between livestock hosts and mosquito vectors across geographic locations. Formulates host–vector ODEs with spatial coupling via a kernel and analyses the effect of movement and transmission parameters. Includes numerical examples illustrating outbreak spread and control implications."
+      },
+      {
+        "file": "SIR_no_demography_freq_mixing_model.pdf",
+        "title": "SIR Model — Frequency-Dependent Mixing",
+        "description": "Studies the basic SIR model without demography using frequency-dependent mixing, specifying parameter values and initial conditions. Analyses focus on epidemic trajectories and the role of transmission and removal rates in shaping outbreak size and duration. Results illustrate how parameter choices influence peak incidence and final epidemic size."
+      },
+      {
+        "file": "STH_transmission_model.pdf",
+        "title": "STH Transmission Model",
+        "description": "Develops a deterministic model for soil-transmitted helminth (STH) transmission between children and adults mediated by an environmental infectious reservoir. Evaluates intervention strategies and their cost-effectiveness using model simulations. Presents sensitivity analyses showing which parameters most influence prevalence reduction."
+      },
+      {
+        "file": "SIR_no_demography_model.pdf",
+        "title": "SIR Model (No Demography)",
+        "description": "Analyzes the canonical SIR model without demography, specifying contact and recovery rates derived from mean infectious duration. Derives epidemic curves and threshold conditions for outbreak growth based on the basic reproduction number. Discusses parameter sensitivity and implications for control measures."
+      },
+      {
+        "file": "short_term_transmission_dynamics.pdf",
+        "title": "Short-Term Transmission Dynamics",
+        "description": "Uses an SEIR-style model to study short-term measles transmission dynamics in a single region, including exposed and death compartments. Specifies latency and infectious periods and examines how contact rate and latency affect outbreak peak and timing. Includes numerical examples and discussion of control implications for rapid-response interventions."
+      }
+    ]
+  }
+  ,
+  {
+    "section": "Misc",
+    "items": [
+      {
+        "file": "hidden_markov_models.pdf",
+        "title": "Hidden Markov Models",
+        "description": "Describes the design and implementation of a Hidden Markov Model applied to time-series prediction tasks. Covers theory of Markov chains, emission models, and practical considerations for parameter estimation and decoding."
+      },
+      {
+        "file": "notes_boolean_functions.pdf",
+        "title": "Boolean Functions — Notes",
+        "description": "A concise set of lecture notes on Boolean functions covering DNF/CNF forms, implicants, prime implicates, and properties on the hypercube. Useful as a study summary for combinatorial and logic-based aspects of Boolean algebra."
+      }
+    ]
   }
 ]
